@@ -16,14 +16,22 @@ class PeopleList extends Component {
     this.props.loadInitialContacts();
   }
 
+  renderInitialView() {
+    if (this.props.detailView === true) {
+      return <PeopleDetail />;
+    } else {
+      return (
+        <FlatList
+          data={this.props.people}
+          renderItem={({ item }) => <PeopleItem people={item} />}
+          keyExtractor={(item, index) => index.toString()}
+        />
+      );
+    }
+  }
+
   render() {
-    return (
-      <FlatList
-        data={this.props.people}
-        renderItem={({ item }) => <PeopleItem people={item} />}
-        keyExtractor={(item, index) => index.toString()}
-      />
-    );
+    return <View style={styles.container}>{this.renderInitialView()}</View>;
   }
 }
 

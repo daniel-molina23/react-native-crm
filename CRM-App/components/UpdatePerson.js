@@ -21,12 +21,12 @@ const styles = StyleSheet.create({
   },
 });
 
-class AddPerson extends Component {
-  onAddPress() {
-    const { firstName, lastName, email, phone, notes, project, company } =
+class UpdatePerson extends Component {
+  onUpdatePress() {
+    const { firstName, lastName, email, phone, notes, project, company, _id } =
       this.props;
 
-    this.props.createNewContact({
+    this.props.saveContact({
       firstName,
       lastName,
       phone,
@@ -34,6 +34,7 @@ class AddPerson extends Component {
       company,
       project,
       notes,
+      _id,
     });
 
     this.props.navigation.navigate("People");
@@ -104,7 +105,7 @@ class AddPerson extends Component {
             <Button
               title="Add"
               color="#4db6ac"
-              onPress={this.onAddPress.bind(this)}
+              onPress={this.onUpdatePress.bind(this)}
             />
           </View>
         </View>
@@ -114,8 +115,9 @@ class AddPerson extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { firstName, lastName, email, phone, notes, project, company } = state;
-  return { firstName, lastName, email, phone, notes, project, company };
+  const { firstName, lastName, email, phone, notes, project, company, _id } =
+    state;
+  return { firstName, lastName, email, phone, notes, project, company, _id };
 };
 
-export default connect(mapStateToProps, actions)(AddPerson);
+export default connect(mapStateToProps, actions)(UpdatePerson);
