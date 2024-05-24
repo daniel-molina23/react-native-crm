@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Button } from "react-native";
 import { connect } from "react-redux";
-import { Button, TextInput } from "@react-native-material/core";
-import * as actions from "../src/actions";
+import { TextInput } from "@react-native-material/core";
+import * as actions from "@/src/actions";
 
 const styles = StyleSheet.create({
   form: {
@@ -14,10 +14,11 @@ const styles = StyleSheet.create({
   },
   fieldStyles: {
     height: 70,
-    color: "#f47100",
+    color: "#000000",
   },
   addButton: {
     marginTop: 20,
+    backgroundColor: "#4db6ac",
   },
 });
 
@@ -103,7 +104,7 @@ class AddPerson extends Component {
           <View style={styles.addButton}>
             <Button
               title="Add"
-              color="#4db6ac"
+              color="#ffffff"
               onPress={this.onAddPress.bind(this)}
             />
           </View>

@@ -38,7 +38,7 @@ const PeopleItem = (props) => {
     <TouchableWithoutFeedback onPress={() => props.selectPerson(props.people)}>
       <View>
         <Image
-          source={require("../src/images/background.jpg")}
+          source={require("@/src/images/background.jpg")}
           style={styles.image}
         />
         <Icon name={"user"} size={100} style={styles.icon} />

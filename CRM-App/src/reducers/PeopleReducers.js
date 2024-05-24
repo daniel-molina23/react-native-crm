@@ -81,6 +81,12 @@ export default (state = initialState, action) => {
         notes: "",
         _id: "",
       };
+    case "DELETE_CONTACT":
+      return {
+        ...state,
+        detailView: false,
+        personSelected: null,
+      };
     default:
       return state;
   }

@@ -13,6 +13,19 @@ export const noneSelected = () => {
   };
 };
 
+export const formUpdate = ({
+  prop,
+  value,
+}: {
+  prop: string;
+  value: string;
+}) => {
+  return {
+    type: "FORM_UPDATE",
+    payload: { prop, value },
+  };
+};
+
 export const createNewContact = ({
   firstName,
   lastName,
@@ -34,13 +47,13 @@ export const createNewContact = ({
     fetch("http://127.0.0.1:3000/contact", {
       method: "POST",
       body: JSON.stringify({
-        firstName,
-        lastName,
-        phone,
-        email,
-        company,
-        project,
-        notes,
+        firstName: firstName,
+        lastName: lastName,
+        phone: phone,
+        email: email,
+        company: company,
+        project: project,
+        notes: notes,
       }),
       headers: {
         Accept: "application/json",
@@ -92,7 +105,7 @@ export const saveContact = ({
   _id: string;
 }) => {
   return (dispatch: Dispatch) => {
-    fetch("http://127.0.0.1:3000/contact/${_id}", {
+    fetch(`http://127.0.0.1:3000/contact/${_id}`, {
       method: "PUT",
       body: JSON.stringify({
         firstName,
@@ -110,6 +123,21 @@ export const saveContact = ({
     })
       .then(() => {
         dispatch({ type: "SAVE_CONTACT" });
+      })
+      .then(() => {
+        loadInitialContacts();
+      })
+      .catch((error) => console.log(error));
+  };
+};
+
+export const deleteContact = (id: string) => {
+  return (dispatch: Dispatch) => {
+    fetch(`http://127.0.0.1:3000/contact/${id}`, {
+      method: "DELETE",
+    })
+      .then(() => {
+        dispatch({ type: "DELETE_CONTACT" });
       })
       .then(() => {
         loadInitialContacts();

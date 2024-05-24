@@ -1,14 +1,41 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, StyleSheet, FlatList } from "react-native";
+import { connect } from "react-redux";
+import _ from "lodash";
+import CompanyItem from "./CompanyItem";
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 80,
+  },
+});
 
 class CompanyList extends Component {
   render() {
     return (
-      <View>
-        <Text>Company List</Text>
+      <View style={styles.container}>
+        <FlatList
+          data={this.props.companies}
+          renderItem={({ item }) => <CompanyItem companies={item} />}
+          keyExtractor={(item, index) => index.toString()}
+        />
       </View>
     );
   }
 }
 
-export default CompanyList;
+const mapStateToProps = (state) => {
+  const people = state.people;
+
+  const companies = _.chain(people)
+    .groupBy("company")
+    .map((val, key) => {
+      return { company: key, names: val };
+    })
+    .value();
+
+  return { companies };
+};
+
+export default connect(mapStateToProps)(CompanyList);

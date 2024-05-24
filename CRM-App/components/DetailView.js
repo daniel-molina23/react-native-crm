@@ -96,7 +96,7 @@ class DetailView extends Component {
       <View style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <Image
-            source={require("../src/images/background.jpg")}
+            source={require("@/src/images/background.jpg")}
             style={styles.image}
           />
           <EvilIcon name={"user"} size={100} style={styles.icon} />
@@ -165,19 +165,19 @@ class DetailView extends Component {
           <View style={styles.actionArea}>
             <TouchableOpacity>
               <Image
-                source={require("../src/images/call.png")}
+                source={require("@/src/images/call.png")}
                 style={styles.actionImage}
               />
             </TouchableOpacity>
             <TouchableOpacity>
               <Image
-                source={require("../src/images/email.png")}
+                source={require("@/src/images/email.png")}
                 style={styles.actionImage}
               />
             </TouchableOpacity>
             <TouchableOpacity>
               <Image
-                source={require("../src/images/sms.png")}
+                source={require("@/src/images/sms.png")}
                 style={styles.actionImage}
               />
             </TouchableOpacity>

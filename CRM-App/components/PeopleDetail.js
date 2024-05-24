@@ -1,14 +1,28 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View } from "react-native";
+import { connect } from "react-redux";
+import DetailView from "./DetailView";
+import UpdatePerson from "./UpdatePerson";
+import * as actions from "@/src/actions";
 
 class PeopleDetail extends Component {
+  renderDetails() {
+    if (this.props.toUpdate) {
+      return <UpdatePerson />;
+    } else {
+      return <DetailView />;
+    }
+  }
+
   render() {
-    return (
-      <View>
-        <Text>People Detail</Text>
-      </View>
-    );
+    return <View>{this.renderDetails()}</View>;
   }
 }
 
-export default PeopleDetail;
+const mapStateToProps = (state) => {
+  return {
+    toUpdate: state.toUpdate,
+  };
+};
+
+export default connect(mapStateToProps, actions)(PeopleDetail);
